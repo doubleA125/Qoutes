@@ -121,6 +121,29 @@
       .lesson-heading { font-size:16px; }
       .quote-box { font-size:18px; }
     }
+    .loading-dots {
+  display: inline-block;
+}
+
+.loading-dots span {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin: 0 2px;
+  background: var(--accent);
+  border-radius: 50%;
+  animation: blink 1.4s infinite both;
+}
+
+.loading-dots span:nth-child(2) { animation-delay: 0.2s; }
+.loading-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes blink {
+  0% { opacity: 0.2; transform: scale(1); }
+  20% { opacity: 1; transform: scale(1.3); }
+  100% { opacity: 0.2; transform: scale(1); }
+}
+
   </style>
 </head>
 <body>
@@ -168,15 +191,20 @@
           "📘 Notes are your ultimate power-up."
         ],
         lessons: [
-          { heading: "English — NULL", 
-          content: "NULL", 
-          details: "NULL" },
-          { heading: "Science — Dynamic Transformations", 
+          { heading: "English — VERB moods recap", 
+          content: "Types of VERB moods", 
+          details: "The main verb moods are the indicative (states facts), imperative (gives commands), and subjunctive (expresses wishes or hypotheticals) ,
+          <span class="loading-dots"><span></span><span></span><span></span></span>
+          with conditional mood used to describe possible outcomes." },
+          { heading: "Science — Gold Vs. Iron pyrite ", 
           content: "Recap physical & chemical changes and property.",
-           details: "Topics: Malleability: Ability of a material to be hammered or rolled into thin sheets without breaking. Magnetic: Ability of a material to be attracted by a magnet or produce a magnetic field.(at least I tried no need to eat that one mark)" },
-          { heading: "Arabic — جزم الفعل المضارع",
-           content: "Master jussive forms.", 
-           details: "Detailed review of present tense jussive rules with examples." }
+           details: "Topics: How to deffrenciate between gold and iron pyrite :fool's gold: ,Malleability: Ability of a material to be hammered or rolled into thin sheets without breaking. Magnetic: Ability of a material to be attracted by a magnet or produce a magnetic field.(at least I tried no need to eat that one mark)" },
+          { heading: "Arabic — NULL",
+           content: "NULL.", 
+           details: "NULL" },
+          { heading: "Math",
+           content: "Pythagorean Theorey.", 
+           details: "The Pythagorean Theorem, discovered by the Greek mathematician Pythagoras, states that in any right-angled triangle the sum of the squares of the two shorter sides equals the square of the hypotenuse. It is a fundamental principle in geometry used to calculate distances, construct shapes, and solve many real-world problems involving right angles." }
         ],
         tips: [
           "Rephrase lessons in your own words to internalize.",
@@ -240,6 +268,7 @@
   </script>
 </body>
 </html>
+
 
 
 
