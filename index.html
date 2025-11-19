@@ -1,4 +1,3 @@
-<!-- Study Notes — Sleek & Modern Interactive UI (HTML + CSS + JS) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -121,33 +120,29 @@
       .lesson-heading { font-size:16px; }
       .quote-box { font-size:18px; }
     }
-    .loading-dots {
-  display: inline-block;
-}
 
-.loading-dots span {
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  margin: 0 2px;
-  background: var(--accent);
-  border-radius: 50%;
-  animation: blink 1.4s infinite both;
-}
+    .loading-dots { display:inline-block; }
+    .loading-dots span {
+      display:inline-block;
+      width:6px;
+      height:6px;
+      margin:0 2px;
+      background:var(--accent);
+      border-radius:50%;
+      animation:blink 1.4s infinite both;
+    }
+    .loading-dots span:nth-child(2) { animation-delay:0.2s; }
+    .loading-dots span:nth-child(3) { animation-delay:0.4s; }
 
-.loading-dots span:nth-child(2) { animation-delay: 0.2s; }
-.loading-dots span:nth-child(3) { animation-delay: 0.4s; }
-
-@keyframes blink {
-  0% { opacity: 0.2; transform: scale(1); }
-  20% { opacity: 1; transform: scale(1.3); }
-  100% { opacity: 0.2; transform: scale(1); }
-}
-
+    @keyframes blink {
+      0% { opacity:0.2; transform:scale(1); }
+      20% { opacity:1; transform:scale(1.3); }
+      100% { opacity:0.2; transform:scale(1); }
+    }
   </style>
 </head>
-<body>
 
+<body>
   <div class="container">
     <h1>🚀 Study Notes Pro</h1>
     <div class="date">Date: <span id="date"></span></div>
@@ -187,29 +182,47 @@
       const DATA = {
         quotes: [
           "🚀 Focus today, conquer tomorrow!",
-          "💪 Consistent effort beats occasional genius.(or just make the big jumps daily)",
+          "💪 Consistent effort beats occasional genius.",
           "📘 Notes are your ultimate power-up."
         ],
         lessons: [
-          { heading: "English — VERB moods recap", 
-          content: "Types of VERB moods", 
-          details: "The main verb moods are the indicative (states facts), imperative (gives commands), and subjunctive (expresses wishes or hypotheticals) ,
-          <span class="loading-dots"><span></span><span></span><span></span></span>
-          with conditional mood used to describe possible outcomes." },
-          { heading: "Science — Gold Vs. Iron pyrite ", 
-          content: "Recap physical & chemical changes and property.",
-           details: "Topics: How to deffrenciate between gold and iron pyrite :fool's gold: ,Malleability: Ability of a material to be hammered or rolled into thin sheets without breaking. Magnetic: Ability of a material to be attracted by a magnet or produce a magnetic field.(at least I tried no need to eat that one mark)" },
-          { heading: "Arabic — NULL",
-           content: "NULL.", 
-           details: "NULL" },
-          { heading: "Math",
-           content: "Pythagorean Theorey.", 
-           details: "The Pythagorean Theorem, discovered by the Greek mathematician Pythagoras, states that in any right-angled triangle the sum of the squares of the two shorter sides equals the square of the hypotenuse. It is a fundamental principle in geometry used to calculate distances, construct shapes, and solve many real-world problems involving right angles." }
+          { 
+            heading: "English — VERB moods recap",
+            content: "Types of VERB moods",
+            details: `
+              The main verb moods are the indicative (states facts), imperative (gives commands), 
+              and subjunctive (expresses wishes or hypotheticals)
+              <span class="loading-dots"><span></span><span></span><span></span></span>
+              with conditional mood used to describe possible outcomes.
+            `
+          },
+          { 
+            heading: "Science — Gold Vs. Iron pyrite",
+            content: "Recap physical & chemical changes and property.",
+            details: `
+              Topics: How to differentiate between real gold and iron pyrite (fool's gold).
+              Malleability: Can be hammered into sheets.
+              Magnetic: Iron pyrite reacts to magnets unlike gold.
+            `
+          },
+          { 
+            heading: "Arabic — NULL",
+            content: "NULL.",
+            details: "NULL"
+          },
+          { 
+            heading: "Math",
+            content: "Pythagorean Theorem.",
+            details: `
+              The Pythagorean Theorem states that in a right-angled triangle, 
+              a² + b² = c², where c is the hypotenuse.
+            `
+          }
         ],
         tips: [
-          "Rephrase lessons in your own words to internalize.",
+          "Rephrase lessons in your own words.",
           "Create structured flashcards with key points.",
-          "Review old notes every 2–3 days to reinforce memory."
+          "Review old notes every 2–3 days."
         ]
       };
 
@@ -234,41 +247,45 @@
         quoteTextEl.textContent = DATA.quotes[index];
         counterEl.textContent = `${index+1}/${DATA.quotes.length}`;
       }
-      function nextQuote() { index = (index+1) % DATA.quotes.length; showQuote(); }
-      function prevQuote() { index = (index-1+DATA.quotes.length) % DATA.quotes.length; showQuote(); }
-
-      nextQuoteBtn.addEventListener('click', nextQuote);
-      prevQuoteBtn.addEventListener('click', prevQuote);
+      nextQuoteBtn.addEventListener('click', () => { index = (index+1) % DATA.quotes.length; showQuote(); });
+      prevQuoteBtn.addEventListener('click', () => { index = (index-1+DATA.quotes.length) % DATA.quotes.length; showQuote(); });
 
       DATA.lessons.forEach(l => {
         const box = document.createElement('div');
         box.className = 'lesson-box';
-        box.innerHTML = `<div class='lesson-heading'>${l.heading}</div><p style='margin-top:6px;opacity:0.9;'>${l.content}</p>`;
+        box.innerHTML = `
+          <div class='lesson-heading'>${l.heading}</div>
+          <p style='margin-top:6px;opacity:0.9;'>${l.content}</p>
+        `;
         box.addEventListener('click', () => {
-          modalHeading.textContent = l.heading;
-          modalContent.textContent = l.details;
+          modalHeading.innerHTML = l.heading;
+          modalContent.innerHTML = l.details;
           lessonModal.classList.remove('hidden');
         });
         lessonsContainer.appendChild(box);
       });
 
       closeLesson.addEventListener('click', () => lessonModal.classList.add('hidden'));
-      lessonModal.addEventListener('click', e => { if(e.target===lessonModal) lessonModal.classList.add('hidden'); });
+      lessonModal.addEventListener('click', e => { if (e.target === lessonModal) lessonModal.classList.add('hidden'); });
 
-      DATA.tips.forEach(t => { const li=document.createElement('li'); li.textContent=t; tipsList.appendChild(li); });
+      DATA.tips.forEach(t => {
+        const li = document.createElement('li');
+        li.textContent = t;
+        tipsList.appendChild(li);
+      });
 
       copyBtn.addEventListener('click', () => {
-        const text=`Study Notes\n${new Date().toLocaleDateString()}\n\nQuotes:\n${DATA.quotes.join('\n')}\n\nLessons:\n${DATA.lessons.map(l=>`${l.heading}: ${l.content}`).join('\n')}\n\nTips:\n${DATA.tips.join('\n')}`;
-        navigator.clipboard.writeText(text).then(()=>alert('Copied!')).catch(()=>alert('Unable to copy'));
+        const text =
+          `Study Notes\n${new Date().toLocaleDateString()}\n\nQuotes:\n${DATA.quotes.join('\n')}\n\nLessons:\n` +
+          DATA.lessons.map(l => `${l.heading}: ${l.content}`).join('\n') +
+          `\n\nTips:\n${DATA.tips.join('\n')}`;
+        navigator.clipboard.writeText(text).then(() => alert('Copied!'));
       });
-      printBtn.addEventListener('click', ()=>window.print());
+
+      printBtn.addEventListener('click', () => window.print());
 
       showQuote();
     });
   </script>
 </body>
 </html>
-
-
-
-
