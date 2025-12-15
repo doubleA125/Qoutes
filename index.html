@@ -3,149 +3,133 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Animated Lessons UI</title>
+<title>Ultimate Animated Learning Hub</title>
 
 <style>
-* { box-sizing:border-box; margin:0; padding:0; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
-body { min-height:100vh; background: radial-gradient(circle at top, #1a1a2e,#0f0f1a); color:#fff; overflow-x:hidden; }
+*{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;}
+body{min-height:100vh;background:radial-gradient(circle at top,#1a1a2e,#0f0f1a);color:#fff;overflow-x:hidden;}
 
-/* Original Animations */
-@keyframes float {0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
-@keyframes glow {0%,100%{text-shadow:0 0 5px #7f5af0;}50%{text-shadow:0 0 20px #7f5af0;}}
-@keyframes type {from{clip-path:inset(0 100% 0 0);}to{clip-path:inset(0 0 0 0);}}
-@keyframes slideUp {from{opacity:0;transform:translateY(40px);}to{opacity:1;transform:translateY(0);}}
-@keyframes pop {0%{transform:scale(0.95);opacity:0;}100%{transform:scale(1);opacity:1;}}
-@keyframes bounce {0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+/* Basic Animations */
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+@keyframes glow{0%,100%{text-shadow:0 0 5px #7f5af0;}50%{text-shadow:0 0 20px #7f5af0;}}
+@keyframes type{from{clip-path:inset(0 100% 0 0);}to{clip-path:inset(0 0 0 0);}}
+@keyframes slideUp{from{opacity:0;transform:translateY(40px);}to{opacity:1;transform:translateY(0);}}
+@keyframes pop{0%{transform:scale(0.95);opacity:0;}100%{transform:scale(1);opacity:1;}}
+@keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
 
-/* New Animations */
-@keyframes rotateCard {0%{transform:rotateY(0);}50%{transform:rotateY(10deg);}100%{transform:rotateY(0);}}
-@keyframes shadowPulse {0%,100%{box-shadow:0 10px 30px rgba(0,0,0,0.4);}50%{box-shadow:0 15px 40px rgba(127,90,240,0.6);}}
-@keyframes slideLeft {0%{opacity:0; transform:translateX(-50px);}100%{opacity:1; transform:translateX(0);}}
-@keyframes gradientShift {0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
-@keyframes neonBorder {0%,100%{border-color:rgba(127,90,240,0.25);}50%{border-color:rgba(127,90,240,0.8);}}
-@keyframes footerFloat {0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
-@keyframes buttonGlow {0%,100%{box-shadow:none;}50%{box-shadow:0 0 15px #7f5af0;}}
-@keyframes typingShimmer {0%{background-position:-500% 0;}100%{background-position:500% 0;}}
-@keyframes quoteFade {0%,100%{opacity:0;}50%{opacity:1;}}
-@keyframes cardHoverBounce {0%,100%{transform:translateY(-12px) scale(1.03);}50%{transform:translateY(-16px) scale(1.05);}}
+/* 20 Extra Animations */
+@keyframes rotateYhover{0%{transform:rotateY(0deg);}50%{transform:rotateY(15deg);}100%{transform:rotateY(0deg);}}
+@keyframes rotateXhover{0%{transform:rotateX(0deg);}50%{transform:rotateX(10deg);}100%{transform:rotateX(0deg);}}
+@keyframes scalePulse{0%,100%{transform:scale(1);}50%{transform:scale(1.05);}}
+@keyframes shadowFlicker{0%,100%{box-shadow:0 10px 30px rgba(0,0,0,0.4);}25%,75%{box-shadow:0 12px 35px rgba(127,90,240,0.6);}50%{box-shadow:0 8px 25px rgba(127,90,240,0.5);}}
+@keyframes neonBorder{0%,100%{border-color:rgba(127,90,240,0.25);}50%{border-color:rgba(127,90,240,0.8);}}
+@keyframes bgGradientShift{0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
+@keyframes textShimmer{0%{background-position:-500% 0;}100%{background-position:500% 0;}}
+@keyframes contentSlideIn{0%{transform:translateX(-30px);opacity:0;}100%{transform:translateX(0);opacity:1;}}
+@keyframes iconBounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
+@keyframes headerGradientFlow{0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
+@keyframes headerWave{0%,100%{transform:translateY(0);}50%{transform:translateY(-5px);}}
+@keyframes sparkle{0%,100%{opacity:0.8;}50%{opacity:1;}}
+@keyframes modalScaleBounce{0%{transform:scale(0.8);}50%{transform:scale(1.05);}100%{transform:scale(1);}}
+@keyframes modalFadeBG{0%{background:rgba(0,0,0,0);}100%{background:rgba(0,0,0,0.75);}}
+@keyframes footerFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
+@keyframes footerTextSparkle{0%,100%{opacity:0.7;}50%{opacity:1;}}
+@keyframes quoteFadeSlide{0%{opacity:0;transform:translateX(-20px);}50%{opacity:1;transform:translateX(0);}100%{opacity:0;transform:translateX(20px);}}
+@keyframes quoteEmojiPop{0%,100%{transform:scale(1);}50%{transform:scale(1.3);}}
+@keyframes btnHoverGlow{0%,100%{box-shadow:none;}50%{box-shadow:0 0 15px #7f5af0;}}
+@keyframes btnPressShrink{0%,100%{transform:scale(1);}50%{transform:scale(0.95);}}
 
-/* Header */
-header { padding:3rem 1rem; text-align:center; }
-header h1 { font-size:clamp(2rem,5vw,3.5rem); background:linear-gradient(90deg,#7f5af0,#2cb67d); -webkit-background-clip:text; -webkit-text-fill-color:transparent; animation:glow 3s infinite, gradientShift 6s ease infinite; background-size:200% 200%; }
-header p { margin-top:1rem; font-size:1.2rem; opacity:0.85; display:inline-block; animation:type 2.5s steps(50) forwards, typingShimmer 3s linear infinite; background:linear-gradient(to right, #fff 0%, #7f5af0 50%, #fff 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-size:200% auto; }
+header{padding:3rem 1rem;text-align:center;}
+header h1{font-size:clamp(2rem,5vw,3.5rem);background:linear-gradient(90deg,#7f5af0,#2cb67d);-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:glow 3s infinite,headerGradientFlow 6s infinite;}
+header p{margin-top:1rem;font-size:1.2rem;opacity:0.85;display:inline-block;animation:type 2.5s steps(50) forwards,textShimmer 3s linear infinite;background:linear-gradient(to right,#fff 0%,#7f5af0 50%,#fff 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:200% auto;}
 
 /* Grid & Cards */
-.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1.5rem; padding:2rem; max-width:1200px; margin:auto; }
-.card { background:rgba(255,255,255,0.08); border-radius:20px; padding:1.5rem; backdrop-filter:blur(14px); box-shadow:0 10px 30px rgba(0,0,0,0.4); animation:float 6s ease-in-out infinite, slideUp 0.8s ease forwards, shadowPulse 6s infinite; transition:transform 0.3s, box-shadow 0.3s, border-color 0.3s; border:1px solid rgba(127,90,240,0.25); }
-.card:hover { animation:cardHoverBounce 1s infinite; transform:translateY(-12px) scale(1.03); border:1px solid rgba(127,90,240,0.8); box-shadow:0 20px 45px rgba(127,90,240,0.4); }
-.card h3 { font-size:1.3rem; margin-bottom:0.5rem; }
-.card p { font-size:0.95rem; opacity:0.85; }
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;padding:2rem;max-width:1200px;margin:auto;}
+.card{background:rgba(255,255,255,0.08);border-radius:20px;padding:1.5rem;backdrop-filter:blur(14px);box-shadow:0 10px 30px rgba(0,0,0,0.4);animation:float 6s ease-in-out infinite,slideUp 0.8s ease forwards,shadowFlicker 6s infinite;border:1px solid rgba(127,90,240,0.25);cursor:pointer;transition:transform 0.3s,box-shadow 0.3s,border-color 0.3s;}
+.card:hover{animation:rotateYhover 0.8s ease,rotateXhover 0.8s ease,scalePulse 1s ease infinite,shadowFlicker 2s infinite,neonBorder 2s infinite;transform:translateY(-12px) scale(1.03);border:1px solid rgba(127,90,240,0.8);box-shadow:0 20px 45px rgba(127,90,240,0.4);}
 
-/* Quotes */
-.quotes { margin:2rem auto; max-width:900px; text-align:center; animation:slideLeft 0.6s ease forwards; }
-.quotes h2 { font-size:2rem; margin-bottom:1rem; background:linear-gradient(90deg,#f5af19,#f12711); -webkit-background-clip:text; -webkit-text-fill-color:transparent; animation:glow 3s infinite; }
-.quote-box { margin-top:1rem; padding:2rem; background:rgba(50,50,50,0.7); border-radius:20px; border:1px solid rgba(127,90,240,0.3); box-shadow:0 8px 20px rgba(0,0,0,0.5); font-size:1.2rem; animation:pop 0.5s ease forwards, quoteFade 5s infinite; position:relative; }
-
-/* Footer */
-footer { text-align:center; padding:2rem 1rem; font-size:0.9rem; opacity:0.6; animation:footerFloat 6s ease-in-out infinite; }
+/* Quote Box */
+.quotes{margin:2rem auto;max-width:900px;text-align:center;}
+.quotes h2{font-size:2rem;margin-bottom:1rem;background:linear-gradient(90deg,#f5af19,#f12711);-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:glow 3s infinite;}
+.quote-box{margin-top:1rem;padding:2rem;background:rgba(50,50,50,0.7);border-radius:20px;border:1px solid rgba(127,90,240,0.3);box-shadow:0 8px 20px rgba(0,0,0,0.5);font-size:1.2rem;animation:pop 0.5s ease forwards,quoteFadeSlide 5s infinite;position:relative;}
+.quote-controls{margin-top:1rem;}
+.quote-controls button{padding:0.5rem 1rem;margin:0 0.5rem;border-radius:12px;border:none;background:rgba(127,90,240,0.3);color:#fff;font-weight:600;cursor:pointer;transition:0.3s;animation:btnPressShrink 1.5s infinite;}
+.quote-controls button:hover{animation:btnHoverGlow 1.5s infinite;transform:scale(1.1) rotate(2deg);background:rgba(127,90,240,0.6);}
 
 /* Modal */
-.modal { position:fixed; inset:0; background: rgba(0,0,0,0.75); display:flex; justify-content:center; align-items:center; z-index:500; opacity:0; pointer-events:none; transition:opacity 0.3s ease; }
-.modal.active { opacity:1; pointer-events:auto; }
-.modal-content { background: rgba(30,30,30,0.95); border-radius:20px; padding:2rem; max-width:600px; width:90%; animation:slideUp 0.4s ease forwards, pop 0.3s ease forwards; position: relative; }
-.close-btn { position:absolute; top:1rem; right:1rem; font-size:1.5rem; cursor:pointer; color:#7f5af0; transition:transform 0.2s; }
-.close-btn:hover { transform:scale(1.2); animation:buttonGlow 1.5s infinite; }
+.modal{position:fixed;inset:0;background:rgba(0,0,0,0.75);display:flex;justify-content:center;align-items:center;z-index:500;opacity:0;pointer-events:none;transition:opacity 0.3s ease;}
+.modal.active{opacity:1;pointer-events:auto;}
+.modal-content{background:rgba(30,30,30,0.95);border-radius:20px;padding:2rem;max-width:600px;width:90%;animation:slideUp 0.4s ease forwards,pop 0.3s ease forwards,modalScaleBounce 0.6s ease forwards;position:relative;}
+.close-btn{position:absolute;top:1rem;right:1rem;font-size:1.5rem;cursor:pointer;color:#7f5af0;transition:transform 0.2s;}
+.close-btn:hover{transform:scale(1.3);animation:btnHoverGlow 1.5s infinite;}
 
-button { cursor:pointer; }
+/* Footer */
+footer{text-align:center;padding:2rem 1rem;font-size:0.9rem;opacity:0.6;animation:footerFloat 6s ease-in-out infinite,footerTextSparkle 4s infinite;}
 </style>
 </head>
 <body>
 
 <header>
-  <h1>🚀 Animated Learning Hub</h1>
-  <p class="typing">✨ Learn faster. Think smarter. Build better. 💡</p>
+<h1>🚀 Ultimate Animated Learning Hub</h1>
+<p class="typing">✨ Learn faster. Think smarter. Build better. 💡</p>
 </header>
 
 <section class="grid">
-
-  <div class="card" data-title="🇬🇧 English — Verb Moods" data-detail="Topics: Indicative, Imperative, Subjunctive. Includes exercises, sentence building, and example dialogues. Practice using 'If I were you...', 'Do this now!', 'He works hard because...'. Enhance understanding with interactive questions.">🇬🇧 English — Verb Moods</div>
-
+  <div class="card" data-title="🇬🇧 English — Verb Moods" data-detail="Topics: Indicative, Imperative, Subjunctive. Includes exercises, dialogues, examples. Practice using 'If I were you...', 'Do this now!', etc. Enhance understanding with interactive questions.">🇬🇧 English — Verb Moods</div>
   <div class="card" data-title="🔬 Science — States of Matter" data-detail="Solid, Liquid, Gas. Study melting, freezing, evaporation, condensation, sublimation, deposition. Understand particle behavior, energy transfer. Real-life examples: ice melting, boiling water, frost formation, dry ice sublimation. Includes exercises and quizzes.">🔬 Science — States of Matter</div>
-
   <div class="card" data-title="📐 Math — Pythagorean Theorem" data-detail="Right-angled triangles: a² + b² = c². Solve missing sides, proofs, word problems. Includes diagrams, step-by-step guides, exercises for mastery. Reinforce understanding with practical examples.">📐 Math — Pythagorean Theorem</div>
-
   <div class="card" data-title="📖 Arabic — البلاغة والمعاني" data-detail="Topics: الكدّ والاجتهاد, الأسلوب المؤكد (إنَّ), التضاد: عز × ذل. Learn the importance of knowledge and work. Includes examples, exercises, comprehension questions. Focus on contextual application and mastery.">📖 Arabic — البلاغة والمعاني</div>
-
 </section>
 
 <div class="quotes">
-  <h2>💬 Quote of the Day</h2>
-  <div class="quote-box" id="quoteText">Loading...</div>
-  <div class="quote-controls">
-    <button id="prevQuoteBtn">◀ Prev</button>
-    <button id="nextQuoteBtn">Next ▶</button>
-  </div>
+<h2>💬 Quote of the Day</h2>
+<div class="quote-box" id="quoteText">Loading...</div>
+<div class="quote-controls">
+<button id="prevQuoteBtn">◀ Prev</button>
+<button id="nextQuoteBtn">Next ▶</button>
+</div>
 </div>
 
 <div class="modal" id="lessonModal">
-  <div class="modal-content">
-    <span class="close-btn" id="closeModal">&times;</span>
-    <h3 id="modalTitle"></h3>
-    <p id="modalDetail"></p>
-  </div>
+<div class="modal-content">
+<span class="close-btn" id="closeModal">&times;</span>
+<h3 id="modalTitle"></h3>
+<p id="modalDetail"></p>
+</div>
 </div>
 
 <footer>💡 Tip: Click a card to view detailed topic information!</footer>
 
 <script>
-const cards = document.querySelectorAll('.card');
-const modal = document.getElementById('lessonModal');
-const modalTitle = document.getElementById('modalTitle');
-const modalDetail = document.getElementById('modalDetail');
-const closeModal = document.getElementById('closeModal');
+const cards=document.querySelectorAll('.card');
+const modal=document.getElementById('lessonModal');
+const modalTitle=document.getElementById('modalTitle');
+const modalDetail=document.getElementById('modalDetail');
+const closeModal=document.getElementById('closeModal');
 
-const quotes = [
-  "🚀 Focus today, conquer tomorrow!",
-  "💪 Consistent effort beats occasional genius.",
-  "📘 Notes are your ultimate power-up.",
-  "✨ Knowledge is power — use it wisely!",
-  "🌟 Every small step counts toward mastery.",
-  "🔥 Persistence is key to success.",
-  "🌈 Think positive, learn better!",
-  "⚡ Stay curious, stay smart.",
-  "🎯 Set goals and achieve them!",
-  "💡 Creativity fuels learning."
+const quotes=[
+"🚀 Focus today, conquer tomorrow!",
+"💪 Consistent effort beats occasional genius.",
+"📘 Notes are your ultimate power-up.",
+"✨ Knowledge is power — use it wisely!",
+"🌟 Every small step counts toward mastery.",
+"🔥 Persistence is key to success.",
+"🌈 Think positive, learn better!",
+"⚡ Stay curious, stay smart.",
+"🎯 Set goals and achieve them!",
+"💡 Creativity fuels learning."
 ];
 
-let currentQuote = 0;
+let currentQuote=0;
 
-function showQuote(){
-  document.getElementById('quoteText').textContent = quotes[currentQuote];
-}
-
-document.getElementById('nextQuoteBtn').addEventListener('click', () => {
-  currentQuote = (currentQuote+1)%quotes.length;
-  showQuote();
-});
-
-document.getElementById('prevQuoteBtn').addEventListener('click', () => {
-  currentQuote = (currentQuote-1+quotes.length)%quotes.length;
-  showQuote();
-});
-
+function showQuote(){document.getElementById('quoteText').textContent=quotes[currentQuote];}
+document.getElementById('nextQuoteBtn').addEventListener('click',()=>{currentQuote=(currentQuote+1)%quotes.length;showQuote();});
+document.getElementById('prevQuoteBtn').addEventListener('click',()=>{currentQuote=(currentQuote-1+quotes.length)%quotes.length;showQuote();});
 showQuote();
 
-cards.forEach(card=>{
-  card.addEventListener('click', ()=>{
-    modal.classList.add('active');
-    modalTitle.textContent = card.dataset.title;
-    modalDetail.textContent = card.dataset.detail;
-  });
-});
-
-closeModal.addEventListener('click', ()=> modal.classList.remove('active'));
-modal.addEventListener('click', e=>{ if(e.target===modal) modal.classList.remove('active'); });
+cards.forEach(card=>{card.addEventListener('click',()=>{modal.classList.add('active');modalTitle.textContent=card.dataset.title;modalDetail.textContent=card.dataset.detail;});});
+closeModal.addEventListener('click',()=>modal.classList.remove('active'));
+modal.addEventListener('click',e=>{if(e.target===modal) modal.classList.remove('active');});
 </script>
-
 </body>
 </html>
