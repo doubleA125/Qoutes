@@ -6,7 +6,7 @@
 <title>Ultimate Animated Learning Hub</title>
 
 <style>
-/* RESET */
+/* ================= RESET ================= */
 *{
   box-sizing:border-box;
   margin:0;
@@ -21,34 +21,75 @@ body{
   cursor:none;
 }
 
-/* ANIMATIONS */
-@keyframes glow{
-  0%,100%{text-shadow:0 0 6px #7f5af0;}
-  50%{text-shadow:0 0 18px #7f5af0;}
-}
-@keyframes float{
-  0%,100%{transform:translateY(0);}
-  50%{transform:translateY(-6px);}
+/* ============== BACKGROUND ANIMATION ============== */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:linear-gradient(
+    120deg,
+    rgba(127,90,240,.15),
+    rgba(44,182,125,.15),
+    rgba(127,90,240,.15)
+  );
+  background-size:300% 300%;
+  animation:bgMove 18s ease infinite;
+  z-index:-1;
 }
 
-/* HEADER */
+@keyframes bgMove{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+/* ================= KEYFRAMES ================= */
+@keyframes glow{
+  0%,100%{text-shadow:0 0 6px #7f5af0}
+  50%{text-shadow:0 0 18px #7f5af0}
+}
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-8px)}
+}
+@keyframes shimmer{
+  from{background-position:-200%}
+  to{background-position:200%}
+}
+@keyframes quoteSlide{
+  0%{opacity:0;transform:translateX(-20px)}
+  15%{opacity:1;transform:none}
+  85%{opacity:1}
+  100%{opacity:0;transform:translateX(20px)}
+}
+@keyframes btnGlow{
+  0%,100%{box-shadow:none}
+  50%{box-shadow:0 0 18px rgba(127,90,240,.8)}
+}
+@keyframes headerWave{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-6px)}
+}
+
+/* ================= HEADER ================= */
 header{
   padding:3rem 1rem;
   text-align:center;
 }
 header h1{
   font-size:clamp(2rem,5vw,3.5rem);
-  background:linear-gradient(90deg,#7f5af0,#2cb67d);
+  background:linear-gradient(90deg,#7f5af0,#2cb67d,#7f5af0);
+  background-size:200%;
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
-  animation:glow 3s infinite;
+  animation:glow 3s infinite, shimmer 6s linear infinite, headerWave 4s infinite;
 }
 header p{
   margin-top:1rem;
   opacity:.85;
 }
 
-/* GRID */
+/* ================= GRID ================= */
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
@@ -58,25 +99,26 @@ header p{
   margin:auto;
 }
 
-/* CARDS */
+/* ================= CARDS ================= */
 .card{
-  background:rgba(255,255,255,0.08);
+  background:rgba(255,255,255,.08);
   border-radius:20px;
   padding:1.8rem;
   backdrop-filter:blur(14px);
-  border:1px solid rgba(127,90,240,0.3);
+  border:1px solid rgba(127,90,240,.35);
   box-shadow:0 10px 30px rgba(0,0,0,.45);
   cursor:pointer;
   transform-style:preserve-3d;
   will-change:transform;
+  animation:float 7s ease-in-out infinite;
   transition:box-shadow .3s,border-color .3s;
 }
 .card:hover{
   border-color:#7f5af0;
-  box-shadow:0 20px 45px rgba(127,90,240,.45);
+  box-shadow:0 25px 50px rgba(127,90,240,.45);
 }
 
-/* QUOTES */
+/* ================= QUOTES ================= */
 .quotes{
   text-align:center;
   max-width:900px;
@@ -89,7 +131,7 @@ header p{
   border-radius:20px;
   border:1px solid rgba(127,90,240,.4);
   font-size:1.2rem;
-  animation:float 5s infinite;
+  animation:float 5s infinite, quoteSlide 8s infinite;
 }
 .quote-controls button{
   margin:1rem .5rem;
@@ -100,6 +142,7 @@ header p{
   color:#fff;
   font-weight:600;
   cursor:pointer;
+  animation:btnGlow 2.5s infinite;
   position:relative;
   overflow:hidden;
 }
@@ -113,7 +156,7 @@ header p{
 }
 .quote-controls button:hover::after{opacity:1}
 
-/* MODAL */
+/* ================= MODAL ================= */
 .modal{
   position:fixed;
   inset:0;
@@ -148,7 +191,7 @@ header p{
   color:#7f5af0;
 }
 
-/* FOOTER */
+/* ================= FOOTER ================= */
 footer{
   text-align:center;
   padding:2rem;
@@ -156,18 +199,7 @@ footer{
   animation:float 6s infinite;
 }
 
-/* SCROLL REVEAL */
-.reveal{
-  opacity:0;
-  transform:translateY(40px);
-  transition:.8s ease;
-}
-.reveal.active{
-  opacity:1;
-  transform:none;
-}
-
-/* CUSTOM CURSOR */
+/* ================= CUSTOM CURSOR ================= */
 .cursor{
   position:fixed;
   width:36px;
@@ -194,27 +226,19 @@ footer{
 
 <body>
 
-<header class="reveal">
+<header>
   <h1>🚀 Ultimate Animated Learning Hub</h1>
   <p>Learn faster. Think smarter. Build better.</p>
 </header>
 
 <section class="grid">
-  <div class="card reveal" data-title="English — Verb Moods" data-detail="Indicative, Imperative, Subjunctive with examples and exercises.">
-    🇬🇧 English — Verb Moods
-  </div>
-  <div class="card reveal" data-title="Science — States of Matter" data-detail="Solid, Liquid, Gas. Real-life examples and quizzes.">
-    🔬 Science — States of Matter
-  </div>
-  <div class="card reveal" data-title="Math — Pythagorean Theorem" data-detail="a² + b² = c² with diagrams and word problems.">
-    📐 Math — Pythagorean Theorem
-  </div>
-  <div class="card reveal" data-title="Arabic — البلاغة والمعاني" data-detail="الكدّ والاجتهاد، الأسلوب المؤكد، أمثلة وتدريبات.">
-    📖 Arabic — البلاغة والمعاني
-  </div>
+  <div class="card" data-title="English — Verb Moods" data-detail="Indicative, Imperative, Subjunctive with examples and exercises.">🇬🇧 English — Verb Moods</div>
+  <div class="card" data-title="Science — States of Matter" data-detail="Solid, Liquid, Gas with real-life examples.">🔬 Science — States of Matter</div>
+  <div class="card" data-title="Math — Pythagorean Theorem" data-detail="a² + b² = c² with diagrams and problems.">📐 Math — Pythagorean Theorem</div>
+  <div class="card" data-title="Arabic — البلاغة والمعاني" data-detail="الكد والاجتهاد، الأسلوب المؤكد، أمثلة وتدريبات.">📖 Arabic — البلاغة والمعاني</div>
 </section>
 
-<div class="quotes reveal">
+<div class="quotes">
   <h2>💬 Quote of the Day</h2>
   <div class="quote-box" id="quoteText"></div>
   <div class="quote-controls">
@@ -231,9 +255,7 @@ footer{
   </div>
 </div>
 
-<footer class="reveal">
-  Tip: Click a card to view lesson details
-</footer>
+<footer>Tip: Click any card to open details</footer>
 
 <div class="cursor"></div>
 <div class="cursor-dot"></div>
@@ -275,7 +297,7 @@ document.querySelectorAll('.card').forEach(card=>{
 closeModal.onclick=()=>modal.classList.remove('active');
 modal.onclick=e=>{if(e.target===modal)modal.classList.remove('active')}
 
-/* 3D CARD TILT */
+/* 3D TILT */
 document.querySelectorAll('.card').forEach(card=>{
   card.addEventListener('mousemove',e=>{
     const r=card.getBoundingClientRect();
@@ -284,17 +306,9 @@ document.querySelectorAll('.card').forEach(card=>{
     card.style.transform=`rotateY(${x*14}deg) rotateX(${-y*14}deg) scale(1.05)`;
   });
   card.addEventListener('mouseleave',()=>{
-    card.style.transform='none';
+    card.style.transform='';
   });
 });
-
-/* SCROLL REVEAL */
-const obs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting)e.target.classList.add('active');
-  });
-},{threshold:.2});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 </script>
 
 </body>
