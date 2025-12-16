@@ -6,8 +6,8 @@
 <title>ULTIMATE Animated Learning Hub</title>
 
 <style>
-/* ================= RESET ================= */
 *{margin:0;padding:0;box-sizing:border-box}
+
 body{
   font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
   min-height:100vh;
@@ -17,69 +17,44 @@ body{
   cursor:none;
 }
 
-/* ================= BACKGROUND LAYERS ================= */
-body::before,
-body::after{
+/* ================= BACKGROUND ================= */
+body::before,body::after{
   content:"";
   position:fixed;
   inset:0;
   z-index:-3;
 }
-
 body::before{
   background:
     radial-gradient(circle at 20% 20%,rgba(127,90,240,.2),transparent 40%),
-    radial-gradient(circle at 80% 30%,rgba(44,182,125,.2),transparent 40%),
-    radial-gradient(circle at 50% 80%,rgba(255,255,255,.08),transparent 40%);
+    radial-gradient(circle at 80% 30%,rgba(44,182,125,.2),transparent 40%);
   animation:bgPulse 20s infinite alternate;
 }
-
 body::after{
   background:linear-gradient(120deg,#7f5af022,#2cb67d22,#7f5af022);
   background-size:400% 400%;
   animation:bgShift 25s infinite;
 }
 
-/* ================= 100+ KEYFRAMES ================= */
-@keyframes bgPulse{0%{filter:hue-rotate(0)}100%{filter:hue-rotate(360deg)}}
-@keyframes bgShift{0%{background-position:0%}50%{background-position:100%}100%{background-position:0%}}
-@keyframes float1{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-@keyframes float2{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
-@keyframes float3{0%,100%{transform:translateY(0)}50%{transform:translateY(-22px)}}
-@keyframes glow1{0%,100%{box-shadow:0 0 10px #7f5af0}50%{box-shadow:0 0 30px #7f5af0}}
-@keyframes glow2{0%,100%{text-shadow:0 0 5px #fff}50%{text-shadow:0 0 20px #7f5af0}}
-@keyframes shimmer{from{background-position:-300%}to{background-position:300%}}
-@keyframes wave{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-@keyframes fadeSlideUp{from{opacity:0;transform:translateY(60px)}to{opacity:1;transform:none}}
-@keyframes fadeSlideLeft{from{opacity:0;transform:translateX(-60px)}to{opacity:1;transform:none}}
-@keyframes fadeSlideRight{from{opacity:0;transform:translateX(60px)}to{opacity:1;transform:none}}
-@keyframes spinSlow{to{transform:rotate(360deg)}}
-@keyframes pulseScale{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
-@keyframes neonBorder{0%,100%{border-color:#7f5af033}50%{border-color:#7f5af0}}
-@keyframes sparkle{0%,100%{opacity:.5}50%{opacity:1}}
-/* (dozens more implicitly via reuse + combos) */
+@keyframes bgPulse{to{filter:hue-rotate(360deg)}}
+@keyframes bgShift{50%{background-position:100%}}
 
 /* ================= HEADER ================= */
 header{
   text-align:center;
   padding:4rem 1rem;
-  animation:fadeSlideUp 1.2s ease;
 }
-
 header h1{
   font-size:clamp(2.5rem,6vw,4.5rem);
   background:linear-gradient(90deg,#fff,#7f5af0,#2cb67d,#fff);
   background-size:400%;
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
-  animation:shimmer 6s linear infinite,glow2 3s infinite,wave 4s infinite;
+  animation:shimmer 6s linear infinite;
 }
+@keyframes shimmer{to{background-position:400%}}
 
-header p{
-  margin-top:1.2rem;
-  opacity:.85;
-  animation:fadeSlideUp 1.8s ease;
-}
+header p{opacity:.85;margin-top:1rem}
 
 /* ================= GRID ================= */
 .grid{
@@ -91,51 +66,27 @@ header p{
   padding:3rem 2rem;
 }
 
-/* ================= CARD ================= */
 .card{
-  position:relative;
   padding:2rem;
   border-radius:24px;
   background:rgba(255,255,255,.08);
   backdrop-filter:blur(18px);
   border:1px solid rgba(127,90,240,.3);
   cursor:pointer;
-  transform-style:preserve-3d;
-  animation:float2 8s ease-in-out infinite,fadeSlideUp 1s ease;
   transition:.4s cubic-bezier(.2,.8,.2,1);
 }
-
-.card::before{
-  content:"";
-  position:absolute;
-  inset:-1px;
-  border-radius:inherit;
-  background:linear-gradient(120deg,#7f5af0,#2cb67d,#7f5af0);
-  opacity:.15;
-  filter:blur(20px);
-  animation:spinSlow 20s linear infinite;
-  z-index:-1;
-}
-
 .card:hover{
   transform:translateY(-14px) scale(1.06);
-  animation:glow1 2s infinite;
+  box-shadow:0 25px 60px rgba(127,90,240,.4);
 }
 
 /* ================= QUOTES ================= */
-.quotes{
-  text-align:center;
-  margin:4rem auto;
-  max-width:900px;
-  animation:fadeSlideLeft 1.4s ease;
-}
-
+.quotes{text-align:center;margin:4rem auto;max-width:900px}
 .quote-box{
   margin-top:1.5rem;
   padding:2.5rem;
   border-radius:22px;
   background:rgba(30,30,45,.85);
-  animation:float3 6s infinite,glow1 4s infinite;
 }
 
 /* ================= BUTTONS ================= */
@@ -148,11 +99,7 @@ button{
   color:#fff;
   font-weight:700;
   cursor:pointer;
-  animation:pulseScale 2.5s infinite,glow1 3s infinite;
-  transition:.3s;
 }
-
-button:hover{transform:scale(1.15) rotate(2deg)}
 
 /* ================= MODAL ================= */
 .modal{
@@ -164,39 +111,33 @@ button:hover{transform:scale(1.15) rotate(2deg)}
   justify-content:center;
   opacity:0;
   pointer-events:none;
-  transition:.4s;
 }
-
 .modal.active{opacity:1;pointer-events:auto}
-
 .modal-content{
   padding:3rem;
   border-radius:30px;
   background:rgba(25,25,40,.95);
-  animation:fadeSlideUp .6s ease,glow1 3s infinite;
 }
 
 /* ================= FOOTER ================= */
-footer{
-  text-align:center;
-  padding:3rem;
-  opacity:.7;
-  animation:wave 5s infinite,sparkle 3s infinite;
-}
+footer{text-align:center;padding:3rem;opacity:.7}
 
-/* ================= CURSOR ================= */
-.cursor{
+/* ================= CINEMATIC CURSOR ================= */
+.cursor-ring{
   position:fixed;
-  width:42px;
-  height:42px;
-  border:2px solid #7f5af0;
+  width:48px;
+  height:48px;
+  border:2px solid rgba(127,90,240,.7);
   border-radius:50%;
   pointer-events:none;
-  transform:translate(-50%,-50%);
-  animation:glow1 2s infinite;
   z-index:9999;
+  transition:
+    transform .25s ease,
+    border-color .25s ease,
+    box-shadow .25s ease;
 }
-.cursor-dot{
+
+.cursor-core{
   position:fixed;
   width:10px;
   height:10px;
@@ -204,6 +145,12 @@ footer{
   border-radius:50%;
   pointer-events:none;
   z-index:10000;
+  box-shadow:0 0 15px rgba(44,182,125,.9);
+}
+.cursor-active{
+  transform:scale(1.8);
+  border-color:#2cb67d;
+  box-shadow:0 0 40px rgba(127,90,240,.8);
 }
 </style>
 </head>
@@ -238,26 +185,51 @@ footer{
 
 <footer>Built to impress. Designed to dominate.</footer>
 
-<div class="cursor"></div>
-<div class="cursor-dot"></div>
+<!-- CURSOR -->
+<div class="cursor-ring"></div>
+<div class="cursor-core"></div>
 
 <script>
-/* CURSOR */
-const c=document.querySelector('.cursor'),d=document.querySelector('.cursor-dot');
-window.onmousemove=e=>{
-  c.style.left=d.style.left=e.clientX+"px";
-  c.style.top=d.style.top=e.clientY+"px";
-};
+/* ============ CINEMATIC CURSOR LOGIC ============ */
+const ring=document.querySelector('.cursor-ring');
+const core=document.querySelector('.cursor-core');
+
+let mouseX=0,mouseY=0;
+let ringX=0,ringY=0;
+
+window.addEventListener('mousemove',e=>{
+  mouseX=e.clientX;
+  mouseY=e.clientY;
+  core.style.left=mouseX+'px';
+  core.style.top=mouseY+'px';
+});
+
+function animateCursor(){
+  ringX+=(mouseX-ringX)*0.12;
+  ringY+=(mouseY-ringY)*0.12;
+  ring.style.left=ringX+'px';
+  ring.style.top=ringY+'px';
+  requestAnimationFrame(animateCursor);
+}
+animateCursor();
+
+/* INTERACTION EFFECT */
+document.querySelectorAll('button,.card').forEach(el=>{
+  el.addEventListener('mouseenter',()=>ring.classList.add('cursor-active'));
+  el.addEventListener('mouseleave',()=>ring.classList.remove('cursor-active'));
+});
 
 /* QUOTES */
 const quotes=[
-"Discipline beats motivation.",
-"Learning is a superpower.",
-"Animation is communication.",
-"Details make perfection."
+  "Discipline beats motivation.",
+  "Learning is a superpower.",
+  "Animation is communication.",
+  "Details make perfection."
 ];
 let i=0;
 const q=document.getElementById("quote");
+const next=document.getElementById("next");
+const prev=document.getElementById("prev");
 function show(){q.textContent=quotes[i]}
 show();
 next.onclick=()=>{i=(i+1)%quotes.length;show()}
@@ -272,17 +244,6 @@ document.querySelectorAll('.card').forEach(card=>{
   }
 });
 modal.onclick=e=>{if(e.target===modal)modal.classList.remove("active")}
-
-/* 3D TILT */
-document.querySelectorAll('.card').forEach(card=>{
-  card.onmousemove=e=>{
-    const r=card.getBoundingClientRect();
-    const x=(e.clientX-r.left)/r.width-.5;
-    const y=(e.clientY-r.top)/r.height-.5;
-    card.style.transform=`rotateY(${x*18}deg) rotateX(${-y*18}deg) scale(1.1)`;
-  };
-  card.onmouseleave=()=>card.style.transform="";
-});
 </script>
 
 </body>
