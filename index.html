@@ -3,109 +3,112 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ULTIMATE Animated Learning Hub</title>
+<title>ULTIMATE Cinematic Learning Hub</title>
 
 <style>
+/* ================= RESET ================= */
 *{margin:0;padding:0;box-sizing:border-box}
-
 body{
   font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
   min-height:100vh;
-  background:#0b0b14;
+  background:#080812;
   color:#fff;
   overflow-x:hidden;
   cursor:none;
 }
 
-/* ================= BACKGROUND ================= */
-body::before,body::after{
+/* ================= CINEMATIC BACKGROUND ================= */
+body::before{
   content:"";
   position:fixed;
-  inset:0;
+  inset:-20%;
+  background:
+    radial-gradient(circle at 30% 30%,#7f5af033,transparent 45%),
+    radial-gradient(circle at 70% 40%,#2cb67d33,transparent 45%),
+    radial-gradient(circle at 50% 80%,#ffffff15,transparent 40%);
+  animation:bgDrift 40s linear infinite;
   z-index:-3;
 }
-body::before{
-  background:
-    radial-gradient(circle at 20% 20%,rgba(127,90,240,.2),transparent 40%),
-    radial-gradient(circle at 80% 30%,rgba(44,182,125,.2),transparent 40%);
-  animation:bgPulse 20s infinite alternate;
+@keyframes bgDrift{
+  50%{transform:translate(-5%,5%) scale(1.1)}
 }
-body::after{
-  background:linear-gradient(120deg,#7f5af022,#2cb67d22,#7f5af022);
-  background-size:400% 400%;
-  animation:bgShift 25s infinite;
-}
-
-@keyframes bgPulse{to{filter:hue-rotate(360deg)}}
-@keyframes bgShift{50%{background-position:100%}}
 
 /* ================= HEADER ================= */
 header{
   text-align:center;
-  padding:4rem 1rem;
+  padding:4.5rem 1rem;
 }
 header h1{
-  font-size:clamp(2.5rem,6vw,4.5rem);
+  font-size:clamp(2.8rem,6vw,4.8rem);
   background:linear-gradient(90deg,#fff,#7f5af0,#2cb67d,#fff);
   background-size:400%;
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
-  animation:shimmer 6s linear infinite;
+  animation:shimmer 7s linear infinite;
 }
 @keyframes shimmer{to{background-position:400%}}
-
 header p{opacity:.85;margin-top:1rem}
 
 /* ================= GRID ================= */
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:2rem;
+  gap:2.2rem;
   max-width:1300px;
   margin:auto;
   padding:3rem 2rem;
 }
 
 .card{
-  padding:2rem;
-  border-radius:24px;
+  padding:2.2rem;
+  border-radius:26px;
   background:rgba(255,255,255,.08);
-  backdrop-filter:blur(18px);
-  border:1px solid rgba(127,90,240,.3);
+  backdrop-filter:blur(20px);
+  border:1px solid rgba(127,90,240,.35);
   cursor:pointer;
-  transition:.4s cubic-bezier(.2,.8,.2,1);
+  transform-style:preserve-3d;
+  animation:cardIn 1.2s ease forwards;
+  transition:.45s cubic-bezier(.2,.9,.2,1);
+}
+@keyframes cardIn{
+  from{opacity:0;transform:translateY(60px) scale(.9)}
 }
 .card:hover{
-  transform:translateY(-14px) scale(1.06);
-  box-shadow:0 25px 60px rgba(127,90,240,.4);
+  transform:translateY(-18px) scale(1.08);
+  box-shadow:0 35px 80px rgba(127,90,240,.45);
 }
 
 /* ================= QUOTES ================= */
 .quotes{text-align:center;margin:4rem auto;max-width:900px}
 .quote-box{
-  margin-top:1.5rem;
-  padding:2.5rem;
-  border-radius:22px;
-  background:rgba(30,30,45,.85);
+  padding:2.8rem;
+  border-radius:26px;
+  background:rgba(30,30,50,.9);
+  animation:breath 6s ease-in-out infinite;
+}
+@keyframes breath{
+  50%{transform:scale(1.02)}
 }
 
-/* ================= BUTTONS ================= */
+/* ================= BUTTON ================= */
 button{
-  margin:1.5rem .5rem;
-  padding:.8rem 1.8rem;
-  border-radius:18px;
+  margin:1.8rem .6rem;
+  padding:.9rem 2rem;
+  border-radius:20px;
   border:none;
   background:linear-gradient(120deg,#7f5af0,#2cb67d);
   color:#fff;
   font-weight:700;
   cursor:pointer;
+  transition:.3s;
 }
+button:hover{transform:scale(1.18)}
 
 /* ================= MODAL ================= */
 .modal{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.85);
+  background:rgba(0,0,0,.9);
   display:flex;
   align-items:center;
   justify-content:center;
@@ -115,42 +118,53 @@ button{
 .modal.active{opacity:1;pointer-events:auto}
 .modal-content{
   padding:3rem;
-  border-radius:30px;
-  background:rgba(25,25,40,.95);
+  border-radius:32px;
+  background:#0f0f1e;
 }
 
 /* ================= FOOTER ================= */
 footer{text-align:center;padding:3rem;opacity:.7}
 
 /* ================= CINEMATIC CURSOR ================= */
-.cursor-ring{
+.cursor-core,
+.cursor-halo,
+.cursor-trail{
   position:fixed;
-  width:48px;
-  height:48px;
-  border:2px solid rgba(127,90,240,.7);
-  border-radius:50%;
   pointer-events:none;
-  z-index:9999;
-  transition:
-    transform .25s ease,
-    border-color .25s ease,
-    box-shadow .25s ease;
+  border-radius:50%;
+  z-index:10000;
 }
 
 .cursor-core{
-  position:fixed;
-  width:10px;
-  height:10px;
-  background:#2cb67d;
-  border-radius:50%;
-  pointer-events:none;
-  z-index:10000;
-  box-shadow:0 0 15px rgba(44,182,125,.9);
+  width:8px;height:8px;
+  background:#fff;
+  box-shadow:0 0 20px #7f5af0;
 }
-.cursor-active{
-  transform:scale(1.8);
-  border-color:#2cb67d;
-  box-shadow:0 0 40px rgba(127,90,240,.8);
+
+.cursor-halo{
+  width:52px;height:52px;
+  border:2px solid rgba(127,90,240,.7);
+  box-shadow:0 0 50px rgba(127,90,240,.6);
+}
+
+.cursor-trail{
+  width:90px;height:90px;
+  background:radial-gradient(circle,#7f5af055,transparent 70%);
+  filter:blur(10px);
+}
+
+/* CLICK RIPPLE */
+.ripple{
+  position:fixed;
+  width:20px;height:20px;
+  border-radius:50%;
+  border:2px solid #7f5af0;
+  animation:ripple .6s ease-out forwards;
+  pointer-events:none;
+  z-index:9999;
+}
+@keyframes ripple{
+  to{transform:scale(6);opacity:0}
 }
 </style>
 </head>
@@ -159,7 +173,7 @@ footer{text-align:center;padding:3rem;opacity:.7}
 
 <header>
   <h1>ULTIMATE Learning Hub</h1>
-  <p>The most animated learning website ever built</p>
+  <p>Cinematic. Animated. Unmatched.</p>
 </header>
 
 <section class="grid">
@@ -176,47 +190,60 @@ footer{text-align:center;padding:3rem;opacity:.7}
   <button id="next">Next</button>
 </div>
 
-<div class="modal" id="modal">
-  <div class="modal-content">
-    <h2 id="mTitle"></h2>
-    <p id="mText"></p>
-  </div>
-</div>
-
-<footer>Built to impress. Designed to dominate.</footer>
+<footer>Designed like a movie. Built like a system.</footer>
 
 <!-- CURSOR -->
-<div class="cursor-ring"></div>
+<div class="cursor-trail"></div>
+<div class="cursor-halo"></div>
 <div class="cursor-core"></div>
 
 <script>
-/* ============ CINEMATIC CURSOR LOGIC ============ */
-const ring=document.querySelector('.cursor-ring');
+/* ================= CINEMATIC CURSOR ENGINE ================= */
 const core=document.querySelector('.cursor-core');
+const halo=document.querySelector('.cursor-halo');
+const trail=document.querySelector('.cursor-trail');
 
-let mouseX=0,mouseY=0;
-let ringX=0,ringY=0;
+let mx=0,my=0;
+let hx=0,hy=0;
+let tx=0,ty=0;
 
 window.addEventListener('mousemove',e=>{
-  mouseX=e.clientX;
-  mouseY=e.clientY;
-  core.style.left=mouseX+'px';
-  core.style.top=mouseY+'px';
+  mx=e.clientX; my=e.clientY;
 });
 
-function animateCursor(){
-  ringX+=(mouseX-ringX)*0.12;
-  ringY+=(mouseY-ringY)*0.12;
-  ring.style.left=ringX+'px';
-  ring.style.top=ringY+'px';
-  requestAnimationFrame(animateCursor);
-}
-animateCursor();
+function animate(){
+  hx+=(mx-hx)*0.15;
+  hy+=(my-hy)*0.15;
+  tx+=(mx-tx)*0.05;
+  ty+=(my-ty)*0.05;
 
-/* INTERACTION EFFECT */
-document.querySelectorAll('button,.card').forEach(el=>{
-  el.addEventListener('mouseenter',()=>ring.classList.add('cursor-active'));
-  el.addEventListener('mouseleave',()=>ring.classList.remove('cursor-active'));
+  core.style.left=mx+'px';
+  core.style.top=my+'px';
+
+  halo.style.left=hx+'px';
+  halo.style.top=hy+'px';
+
+  trail.style.left=tx+'px';
+  trail.style.top=ty+'px';
+
+  requestAnimationFrame(animate);
+}
+animate();
+
+/* MAGNETIC HOVER */
+document.querySelectorAll('.card,button').forEach(el=>{
+  el.onmouseenter=()=>halo.style.transform='scale(1.7)';
+  el.onmouseleave=()=>halo.style.transform='scale(1)';
+});
+
+/* CLICK RIPPLE */
+window.addEventListener('click',e=>{
+  const r=document.createElement('div');
+  r.className='ripple';
+  r.style.left=e.clientX+'px';
+  r.style.top=e.clientY+'px';
+  document.body.appendChild(r);
+  setTimeout(()=>r.remove(),600);
 });
 
 /* QUOTES */
@@ -228,22 +255,10 @@ const quotes=[
 ];
 let i=0;
 const q=document.getElementById("quote");
-const next=document.getElementById("next");
-const prev=document.getElementById("prev");
 function show(){q.textContent=quotes[i]}
 show();
 next.onclick=()=>{i=(i+1)%quotes.length;show()}
 prev.onclick=()=>{i=(i-1+quotes.length)%quotes.length;show()}
-
-/* MODAL */
-document.querySelectorAll('.card').forEach(card=>{
-  card.onclick=()=>{
-    modal.classList.add("active");
-    mTitle.textContent=card.dataset.title;
-    mText.textContent=card.dataset.detail;
-  }
-});
-modal.onclick=e=>{if(e.target===modal)modal.classList.remove("active")}
 </script>
 
 </body>
