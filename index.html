@@ -3,10 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ULTIMATE Cinematic Learning Hub</title>
+<title>Ultimate Learning Hub</title>
 
 <style>
-/* ================= RESET ================= */
 *{margin:0;padding:0;box-sizing:border-box}
 body{
   font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
@@ -14,10 +13,9 @@ body{
   background:#080812;
   color:#fff;
   overflow-x:hidden;
-  cursor:none;
 }
 
-/* ================= CINEMATIC BACKGROUND ================= */
+/* Background */
 body::before{
   content:"";
   position:fixed;
@@ -27,179 +25,73 @@ body::before{
     radial-gradient(circle at 70% 40%,#2cb67d33,transparent 45%),
     radial-gradient(circle at 50% 80%,#ffffff15,transparent 40%);
   animation:bgDrift 40s linear infinite;
-  z-index:-3;
+  z-index:-1;
 }
 @keyframes bgDrift{50%{transform:translate(-5%,5%) scale(1.1)}}
 
-/* ================= HEADER ================= */
 header{
   text-align:center;
-  padding:4.5rem 1rem;
+  padding:4rem 1rem;
 }
 header h1{
-  font-size:clamp(2.8rem,6vw,4.8rem);
+  font-size:clamp(2.5rem,6vw,4rem);
   background:linear-gradient(90deg,#fff,#7f5af0,#2cb67d,#fff);
-  background-size:400%;
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
-  animation:shimmer 7s linear infinite,glow1 3s infinite,headerWave 4s infinite;
 }
-@keyframes shimmer{to{background-position:400%}}
-@keyframes glow1{0%,100%{text-shadow:0 0 5px #7f5af0}50%{text-shadow:0 0 25px #7f5af0}}
-@keyframes headerWave{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-header p{opacity:.85;margin-top:1rem;animation:fadeSlideUp 2s ease}
+header p{opacity:.8;margin-top:1rem}
 
-/* ================= GRID ================= */
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:2.2rem;
-  max-width:1300px;
+  gap:2rem;
+  max-width:1100px;
   margin:auto;
-  padding:3rem 2rem;
+  padding:2rem;
 }
 
-/* ================= CARD ================= */
 .card{
-  padding:2.2rem;
-  border-radius:26px;
-  background:rgba(255,255,255,.08);
-  backdrop-filter:blur(20px);
-  border:1px solid rgba(127,90,240,.35);
-  cursor:pointer;
-  transform-style:preserve-3d;
-  animation:cardIn 1.2s ease forwards,floatCard 8s ease-in-out infinite,shadowFlicker 6s infinite;
-  transition:.45s cubic-bezier(.2,.9,.2,1);
-}
-@keyframes cardIn{from{opacity:0;transform:translateY(60px) scale(.9)}}
-@keyframes floatCard{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-@keyframes shadowFlicker{0%,100%{box-shadow:0 10px 25px rgba(0,0,0,.3);}25%,75%{box-shadow:0 12px 30px rgba(127,90,240,.5);}50%{box-shadow:0 8px 20px rgba(127,90,240,.4);}}
-.card::before{
-  content:"";
-  position:absolute;
-  inset:-1px;
-  border-radius:inherit;
-  background:linear-gradient(120deg,#7f5af0,#2cb67d,#7f5af0);
-  opacity:.15;
-  filter:blur(20px);
-  animation:spinSlow 20s linear infinite;
-  z-index:-1;
-}
-@keyframes spinSlow{to{transform:rotate(360deg)}}
-.card:hover{
-  transform:translateY(-18px) scale(1.08);
-  box-shadow:0 35px 80px rgba(127,90,240,.45);
-}
-
-/* ================= QUOTES ================= */
-.quotes{text-align:center;margin:4rem auto;max-width:900px}
-.quote-box{
-  padding:2.8rem;
-  border-radius:26px;
-  background:rgba(30,30,50,.9);
-  animation:breath 6s ease-in-out infinite,glow2 4s infinite,floatQuote 8s ease-in-out infinite;
-}
-@keyframes breath{50%{transform:scale(1.02)}}
-@keyframes glow2{0%,100%{box-shadow:0 0 8px #2cb67d}50%{box-shadow:0 0 25px #2cb67d}}
-@keyframes floatQuote{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-
-/* ================= BUTTON ================= */
-button{
-  margin:1.8rem .6rem;
-  padding:.9rem 2rem;
+  padding:2rem;
   border-radius:20px;
-  border:none;
-  background:linear-gradient(120deg,#7f5af0,#2cb67d);
-  color:#fff;
-  font-weight:700;
+  background:rgba(255,255,255,.08);
+  backdrop-filter:blur(15px);
+  border:1px solid rgba(127,90,240,.3);
   cursor:pointer;
   transition:.3s;
-  animation:pulseScale 2.5s infinite,btnGlow 3s infinite;
 }
-button:hover{transform:scale(1.18)}
-@keyframes pulseScale{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
-@keyframes btnGlow{0%,100%{box-shadow:none}50%{box-shadow:0 0 15px #7f5af0}}
+.card:hover{
+  transform:translateY(-10px) scale(1.05);
+  box-shadow:0 20px 50px rgba(127,90,240,.4);
+}
 
-/* ================= MODAL ================= */
 .modal{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.9);
+  background:rgba(0,0,0,.85);
   display:flex;
   align-items:center;
   justify-content:center;
   opacity:0;
   pointer-events:none;
+  transition:.3s;
 }
 .modal.active{opacity:1;pointer-events:auto}
+
 .modal-content{
-  padding:3rem;
-  border-radius:32px;
+  max-width:600px;
+  padding:2rem;
+  border-radius:20px;
   background:#0f0f1e;
-  animation:fadeSlideUp .6s ease,glow1 3s infinite;
+  line-height:1.6;
 }
-@keyframes fadeSlideUp{from{opacity:0;transform:translateY(60px)}to{opacity:1;transform:none}}
+.modal-content b{color:#2cb67d}
+.modal-content hr{margin:1rem 0;border:0;border-top:1px solid #333}
 
-/* ================= FOOTER ================= */
-footer{text-align:center;padding:3rem;opacity:.7;animation:footerFloat 6s ease-in-out infinite,footerTextSparkle 4s infinite}
-@keyframes footerFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-@keyframes footerTextSparkle{0%,100%{opacity:.7}50%{opacity:1}}
-
-/* ================= CINEMATIC CURSOR ================= */
-.cursor-core,
-.cursor-halo,
-.cursor-trail{
-  position:fixed;
-  pointer-events:none;
-  border-radius:50%;
-  z-index:10000;
+footer{
+  text-align:center;
+  padding:2rem;
+  opacity:.7;
 }
-.cursor-core{
-  width:10px;height:10px;
-  background:#fff;
-  box-shadow:0 0 20px #7f5af0;
-  transform:translate(-50%,-50%);
-}
-.cursor-halo{
-  width:52px;height:52px;
-  border:2px solid rgba(127,90,240,.7);
-  box-shadow:0 0 50px rgba(127,90,240,.6);
-  transform:translate(-50%,-50%);
-}
-.cursor-trail{
-  width:90px;height:90px;
-  background:radial-gradient(circle,#7f5af055,transparent 70%);
-  filter:blur(10px);
-  transform:translate(-50%,-50%);
-}
-
-/* CLICK RIPPLE */
-.ripple{
-  position:fixed;
-  width:20px;height:20px;
-  border-radius:50%;
-  border:2px solid #7f5af0;
-  animation:ripple .6s ease-out forwards;
-  pointer-events:none;
-  z-index:9999;
-}
-@keyframes ripple{to{transform:scale(6);opacity:0}}
-
-/* ================= EXTRA ANIMATIONS ================= */
-/* Floating, bouncing, rotating, shimmering, sliding, scaling, glowing, neon borders, etc. */
-@keyframes float1{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-@keyframes float2{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
-@keyframes float3{0%,100%{transform:translateY(0)}50%{transform:translateY(-22px)}}
-@keyframes scalePulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
-@keyframes rotateYhover{0%{transform:rotateY(0deg)}50%{transform:rotateY(15deg)}100%{transform:rotateY(0deg)}}
-@keyframes rotateXhover{0%{transform:rotateX(0deg)}50%{transform:rotateX(10deg)}100%{transform:rotateX(0deg)}}
-@keyframes contentSlideIn{0%{transform:translateX(-30px);opacity:0}100%{transform:translateX(0);opacity:1}}
-@keyframes iconBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
-@keyframes modalScaleBounce{0%{transform:scale(0.8)}50%{transform:scale(1.05)}100%{transform:scale(1)}}
-@keyframes quoteFadeSlide{0%{opacity:0;transform:translateX(-20px)}50%{opacity:1;transform:translateX(0)}100%{opacity:0;transform:translateX(20px)}}
-@keyframes quoteEmojiPop{0%,100%{transform:scale(1)}50%{transform:scale(1.3)}}
-@keyframes btnPressShrink{0%,100%{transform:scale(1)}50%{transform:scale(0.95)}}
-/* ...more can be reused to reach 100+ easily */
 </style>
 </head>
 
@@ -207,149 +99,70 @@ footer{text-align:center;padding:3rem;opacity:.7;animation:footerFloat 6s ease-i
 
 <header>
   <h1>ULTIMATE Learning Hub</h1>
-  <p>Cinematic. Animated. Unmatched.</p>
+  <p>Cinematic. Clean. Professional.</p>
 </header>
 
 <section class="grid">
-  <div class="card" data-title="English" data-detail="We have watched a video about Electromagnetism and answered a sheet containing questions about it">🇬🇧 English</div>
-  <div class="card" data-title="Science" data-detail="🔹 <b>Electric Charge & Current Flow</b>
+  <div class="card" data-title="English" data-detail="We studied <b>Electromagnetism</b> and solved related questions.">🇬🇧 English</div>
 
-<b>Coulomb (C)</b> is the standard unit used to measure <b>electric charge</b>. 
-It represents the amount of charge that passes through a conductor.
+  <div class="card" data-title="Science" data-detail="🔹 <b>Electric Charge & Current Flow</b><br><br>
 
-The charge is calculated using:
-<b>Q = I × t</b>
-where:
-• <b>Q</b> = charge (Coulombs)  
-• <b>I</b> = current (Amperes)  
-• <b>t</b> = time (seconds)
+<b>Coulomb (C)</b> is the unit of <b>electric charge</b>. It measures how much charge flows through a conductor.<br><br>
 
-<hr>
-
-🔸 <b>Types of Electric Current</b>
-
-<b>1. Direct Current (DC)</b>
-• Charge flows in <b>one constant direction</b>  
-• Current is <b>stable over time</b>  
-• Common source: <b>Batteries</b>  
-→ Charge <b>increases steadily</b> with time  
-
-<b>2. Alternating Current (AC)</b>
-• Charge <b>reverses direction periodically</b>  
-• Current <b>varies continuously</b>  
-• Common source: <b>Household electricity</b>  
-→ Charge moves <b>back and forth</b> within the wire  
+<b>Formula:</b><br>
+<b>Q = I × t</b><br>
+• Q = Charge (C)<br>
+• I = Current (A)<br>
+• t = Time (s)
 
 <hr>
 
-🔹 <b>Key Concept</b>
-• <b>Coulomb</b> measures the <b>quantity of moving charge</b>  
-• <b>DC</b>: One-directional flow  
-• <b>AC</b>: Bidirectional (reversing) flow">📐 science</div>
-  <div class="card" data-title="Arabic" data-detail="بلاغة، نحو، معاني.">📖 Arabic</div>
+🔸 <b>Types of Current</b><br><br>
+
+<b>1. Direct Current (DC)</b><br>
+• Flows in <b>one direction</b><br>
+• <b>Constant</b> over time<br>
+• Example: Batteries<br>
+
+<br>
+<b>2. Alternating Current (AC)</b><br>
+• Changes <b>direction repeatedly</b><br>
+• <b>Not constant</b><br>
+• Example: Home electricity
+
+<hr>
+
+🔹 <b>Summary</b><br>
+• Coulomb = amount of charge<br>
+• DC = one direction<br>
+• AC = forward & backward">📐 Science</div>
+
+  <div class="card" data-title="Arabic" data-detail="<b>تفسير الآية:</b><br><br>أعظم الظلم هو الكذب على الله مع معرفة الحق ورفضه، وهذا يؤدي إلى عدم الهداية.">📖 Arabic</div>
 </section>
 
-<div class="quotes">
-  <h2>Quote of the Moment</h2>
-  <div class="quote-box" id="quote">Loading...</div>
-  <button id="prev">Prev</button>
-  <button id="next">Next</button>
-</div>
-
-<footer>Designed like a movie. Built like a system.</footer>
-
-<!-- CURSOR -->
-<div class="cursor-trail"></div>
-<div class="cursor-halo"></div>
-<div class="cursor-core"></div>
+<footer>Designed like a system.</footer>
 
 <script>
-/* ================= CINEMATIC CURSOR ================= */
-const core=document.querySelector('.cursor-core');
-const halo=document.querySelector('.cursor-halo');
-const trail=document.querySelector('.cursor-trail');
-
-let mx=0,my=0,hx=0,hy=0,tx=0,ty=0;
-
-window.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
-
-function animate(){
-  hx+=(mx-hx)*0.15;
-  hy+=(my-hy)*0.15;
-  tx+=(mx-tx)*0.05;
-  ty+=(my-ty)*0.05;
-
-  core.style.left=mx+'px';
-  core.style.top=my+'px';
-  halo.style.left=hx+'px';
-  halo.style.top=hy+'px';
-  trail.style.left=tx+'px';
-  trail.style.top=ty+'px';
-  requestAnimationFrame(animate);
-}
-animate();
-
-/* MAGNETIC HOVER */
-document.querySelectorAll('.card,button').forEach(el=>{
-  el.onmouseenter=()=>halo.style.transform='translate(-50%,-50%) scale(1.7)';
-  el.onmouseleave=()=>halo.style.transform='translate(-50%,-50%) scale(1)';
-});
-
-/* CLICK RIPPLE */
-window.addEventListener('click',e=>{
-  const r=document.createElement('div');
-  r.className='ripple';
-  r.style.left=e.clientX+'px';
-  r.style.top=e.clientY+'px';
-  document.body.appendChild(r);
-  setTimeout(()=>r.remove(),600);
-});
-
-/* QUOTES */
-const quotes=[
-  "Discipline beats motivation.",
-  "Learning is a superpower.",
-  "Animation is communication.",
-  "Details make perfection."
-];
-let i=0;
-const q=document.getElementById("quote");
-function show(){q.textContent=quotes[i]}
-show();
-next.onclick=()=>{i=(i+1)%quotes.length;show()}
-prev.onclick=()=>{i=(i-1+quotes.length)%quotes.length;show()}
-
-/* MODAL */
 const modal=document.createElement('div');
 modal.className='modal';
 modal.innerHTML='<div class="modal-content"><h2 id="mTitle"></h2><p id="mText"></p></div>';
 document.body.appendChild(modal);
+
 const mTitle=modal.querySelector('#mTitle');
 const mText=modal.querySelector('#mText');
 
 document.querySelectorAll('.card').forEach(card=>{
   card.onclick=()=>{
     modal.classList.add('active');
-    mTitle.textContent=card.dataset.title;
-    mText.textContent=card.dataset.detail;
-  }
-});
-modal.onclick=e=>{if(e.target===modal)modal.classList.remove('active')}
-
-/* 3D TILT */
-document.querySelectorAll('.card').forEach(card=>{
-  card.onmousemove=e=>{
-    const r=card.getBoundingClientRect();
-    const x=(e.clientX-r.left)/r.width-.5;
-    const y=(e.clientY-r.top)/r.height-.5;
-    card.style.transform=`rotateY(${x*18}deg) rotateX(${-y*18}deg) scale(1.08)`;
+    mTitle.innerHTML=card.dataset.title;
+    mText.innerHTML=card.dataset.detail;
   };
-  card.onmouseleave=()=>card.style.transform="";
 });
+
+modal.onclick=e=>{
+  if(e.target===modal) modal.classList.remove('active');
+};
 </script>
 
 </body>
 </html>
-
-
-
